@@ -49,7 +49,7 @@ function AddProductForm() {
       <h1 className='p-2 m-2 text-blue-700 stroke-slate-500'>Add New Product</h1>
       <form className='w-full max-w-lg'>
         <div className="flex flex-wrap p-3 mb-6 -mx-3">
-          <label forhtml="label" className="block mb-2 text-xs font-bold tracking-wide text-gray-700 uppercase">Label</label>
+          <label htmlFor="label" className="block mb-2 text-xs font-bold tracking-wide text-gray-700 uppercase">Label</label>
           <input 
             type="text" 
             className="block w-full px-4 py-3 mb-3 leading-tight text-gray-700 bg-gray-200 border border-red-500 rounded ppearance-none focus:outline-none focus:bg-white" 
@@ -62,7 +62,7 @@ function AddProductForm() {
         </div>
 
         <div className="flex flex-wrap p-3 mb-6 -mx-3">
-          <label forhtml="brand" className="block mb-2 text-xs font-bold tracking-wide text-gray-700 uppercase">Label</label>
+          <label htmlFor="brand" className="block mb-2 text-xs font-bold tracking-wide text-gray-700 uppercase">Brand</label>
           <input 
             type="text" 
             className="block w-full px-4 py-3 mb-3 leading-tight text-gray-700 bg-gray-200 border border-red-500 rounded ppearance-none focus:outline-none focus:bg-white" 
@@ -75,7 +75,7 @@ function AddProductForm() {
         </div>
 
         <div className="flex flex-wrap p-3 mb-6 -mx-3">
-          <label forhtml="category" className="block mb-2 text-xs font-bold tracking-wide text-gray-700 uppercase">Category</label>
+          <label htmlFor="category" className="block mb-2 text-xs font-bold tracking-wide text-gray-700 uppercase">Category</label>
           <input 
             type="text" 
             className="block w-full px-4 py-3 mb-3 leading-tight text-gray-700 bg-gray-200 border border-red-500 rounded ppearance-none focus:outline-none focus:bg-white" 
@@ -88,7 +88,7 @@ function AddProductForm() {
         </div>
 
         <div className="flex flex-wrap p-3 mb-6 -mx-3">
-          <label forhtml="price" className="block mb-2 text-xs font-bold tracking-wide text-gray-700 uppercase">Price</label>
+          <label htmlFor="price" className="block mb-2 text-xs font-bold tracking-wide text-gray-700 uppercase">Price</label>
           <input 
             type="Number" 
             className="block w-full px-4 py-3 mb-3 leading-tight text-gray-700 bg-gray-200 border border-red-500 rounded ppearance-none focus:outline-none focus:bg-white" 
