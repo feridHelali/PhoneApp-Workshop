@@ -71,4 +71,3 @@ function ProductsPage() {
 
 export default ProductsPage
 
-//TODO : to implement ProductPage

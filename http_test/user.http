@@ -2,9 +2,9 @@ POST http://localhost:3010/user/register
 Content-Type: application/json
 
 {
-    "fullName":"Ala HELALI",
-    "email":"ala@gmail.com",
-    "password":"Toto2023"
+    "fullName":"Salem",
+    "email":"salem@gmail.com",
+    "password":"toto"
 }
 
 ###
@@ -12,10 +12,10 @@ POST http://localhost:3010/user/login
 Content-Type: application/json
 
 {
-    "email":"helaliferid@gmail.com",
-    "password":"Toto2023"
+    "email":"salem@gmail.com",
+    "password":"toto"
 }
 
 ###
 GET http://localhost:3010/user/all
-x-access-token : eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiNjNjN2IzOWQ5YTAzMTdiNmQyOWJmOTVkIiwiZW1haWwiOiJoZWxhbGlmZXJpZEBnbWFpbC5jb20iLCJpYXQiOjE2NzQwMzgwNTIsImV4cCI6MTY3NDA0NTI1Mn0.xWfcu95nBPyHOJNh2WUcPuQ-e5Ws1zyvJpG2zoE_l5Q
+x-access-token : eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiNjNjN2IzOWQ5YTAzMTdiNmQyOWJmOTVkIiwiZW1haWwiOiJoZWxhbGlmZXJpZEBnbWFpbC5jb20iLCJpYXQiOjE2NzQ0NzY1NDAsImV4cCI6MTY3NDQ4Mzc0MH0.Z5s2VoOkqxXEe_m7Kk_gZ1D5-O67rMrankdqJC28HBk

@@ -1,9 +1,23 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-import Logo from '../../logo.png'
+import { UserContext } from '../../contexts/UserContext'
+import { useContext, useEffect } from 'react'
+import Logo from '../../logo.png';
+import { useNavigate } from 'react-router-dom';
+import { logout } from '../../services/AuthService';
+import Avatar from '../../avatar.png';
+import { isAuthenticated } from '../../services/AuthService';
 
 
 function Navbar() {
+
+  const { user, setUser } = useContext(UserContext)
+  const navigate=useNavigate();
+
+  useEffect(()=>{
+    setUser(isAuthenticated())
+   },[user])
+
   return (
     <>
       <nav className="bg-white border-gray-200 px-2 sm:px-4 py-2.5 rounded dark:bg-gray-800">
@@ -30,6 +44,22 @@ function Navbar() {
               </li>
               <li>
                 <Link to="/contact" className="block py-2 pl-3 pr-4 text-gray-700 border-b border-gray-100 hover:bg-gray-50 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-gray-400 md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700">Contact Us</Link>
+              </li>
+              <li>
+                {!user ? (<button className='text-slate-800'
+                 onClick={()=>{
+                  navigate('/login')
+                 }}
+                >login</button>) :
+                  (<div className='flex flex-row justify-center align-middle'>
+                    <span className='p-1 m-1'>{user.fullName}</span> 
+                    <img src={Avatar} alt='avatar' className='h-12 p-2 m-2'/>
+                    <span className='p-1 m-1 cursor-pointer'
+                    onClick={()=>{
+                      logout();
+                      navigate('/');
+                    }}>logout</span>
+                  </div>)}
               </li>
 
             </ul>
