@@ -2,10 +2,10 @@ POST http://localhost:3010/product/add
 Content-Type: application/json
 
 {
-    "label":"Smartphone iPhone",
+    "label":"Smartphone iPhone X5",
     "brand":"Apple",
     "category":"Smart Phone",
-    "price":1800.352
+    "price":1500.352
 }
 
 ###
@@ -19,9 +19,9 @@ PUT http://localhost:3010/product/63cba8609e10103d2da2fdd6
 Content-Type: application/json
 
 {
-    "label":"Smart Phone Galxy S3 Samsung",
+    "label":"Smart Phone Galxy S2 Samsung",
     "brand":"Sumsung",
-    "category":"Smart Phone",
+    "category":"SmartPhone",
     "price":1000.352
 }
 

@@ -1,8 +1,11 @@
 const router=require('express').Router();
+const paginatedResult = require('../middlewares/paginated-result');
+const { validateRequestSchema } = require('../middlewares/validate.request.schema');
 const productService=require('../services/product.service');
 const formatResponse=require('../utilities/format.response');
+const { postProductValidator } = require('./product.validators');
 
-router.post('/add',async (req,res)=>{
+router.post('/add',postProductValidator,validateRequestSchema,async (req,res)=>{
     const {label,brand,category,price} = req.body;
     try {
         const result = await productService.addProduct({label,brand,category,price});
@@ -12,10 +15,10 @@ router.post('/add',async (req,res)=>{
     }
 })
 
-router.get('/all',async (req,res)=>{
+router.get('/all',paginatedResult(require('../models/product.model')),async (req,res)=>{
     try {
        const result = await productService.getAllProducts();
-       res.json(result) 
+       res.json(res.result) 
     } catch (error) {
         res.json(formatResponse('ERROR',error.message)) 
     }

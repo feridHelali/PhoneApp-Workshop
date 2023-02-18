@@ -19,7 +19,7 @@ function Home() {
   }, [])
 
   return (
-    <div className='flex self-center flex-grow gap-2 p-2 m-1 md:flex-row sm:flex-col'>
+    <div className='flex flex-wrap self-center justify-center flex-grow gap-2 p-2 m-1 md:flex-row sm:flex-col'>
       {
         products.map(product=>(
           <ProductCard key={product._id} 

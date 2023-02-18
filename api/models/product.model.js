@@ -1,5 +1,7 @@
 const mongoose=require('mongoose');
 
+const categoryEnumeration = ["Phone","Smart Phone","Tablet"]
+
 const Schema= mongoose.Schema;
 
 const ProductSchema=new Schema({
@@ -13,10 +15,12 @@ const ProductSchema=new Schema({
     },
     category:{
         type:String,
-        default:'Unknown'
+        enum:{values:categoryEnumeration, message : '{VALUE} is not supported'}
     },
     price:{
         type:Number,
+        min:0,
+        max:99999
         
     },
     photo_url:{
