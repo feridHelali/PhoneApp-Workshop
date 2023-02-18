@@ -12,14 +12,19 @@ import Register from './components/user/Register';
 import Footer from './components/layout/Footer';
 import { UserContext } from './contexts/UserContext';
 import { useState } from 'react';
+import {  AlertProvider } from './components/Alert/AlertContext';
+import AlertPopup from './components/Alert/AlertPopup'
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 function App() {
   const [user, setUser] = useState(null)
 
   return (
     <UserContext.Provider value={{user,setUser}}>
+      <AlertProvider> 
       <Router>
         <Navbar />
+        <AlertPopup />
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/products" element={<ProductsPage />} />
@@ -33,6 +38,7 @@ function App() {
         </Routes>
         <Footer />
       </Router>
+      </AlertProvider>
     </UserContext.Provider>
 
   );

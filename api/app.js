@@ -21,6 +21,7 @@ app.use(morgan('tiny', { stream: stream }))
 
 app.use('/user',userRouter);
 app.use('/product',productRouter)
+app.use('/uploads', express.static('uploads'))
 
 
 app.get('/',(req,res)=>{

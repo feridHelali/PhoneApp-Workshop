@@ -4,6 +4,8 @@ const { validateRequestSchema } = require('../middlewares/validate.request.schem
 const productService=require('../services/product.service');
 const formatResponse=require('../utilities/format.response');
 const { postProductValidator } = require('./product.validators');
+const {productPhotoUpload} =require('../middlewares/multer')
+const Product = require('../models/product.model')
 
 router.post('/add',postProductValidator,validateRequestSchema,async (req,res)=>{
     const {label,brand,category,price} = req.body;
@@ -54,5 +56,24 @@ router.delete('/:id',async (req,res)=>{
         res.json(formatResponse('ERROR',error.message)) 
     }
 })
+
+// upload product photo
+router.put('/upload/:id', async (req, res, next) => {
+    await productPhotoUpload(req, res, async (error) => {
+        if (error) {
+            res.status(500).json({ error: error.message })
+        }
+        try {
+            const upLoadedPhoto = req.file;
+            const photoUrl = 'uploads/' + upLoadedPhoto.filename
+            const result = await Product.findByIdAndUpdate(req.params.id, { photo_url: photoUrl })
+            res.json(result)
+        } catch (error) {
+            console.log(error)
+            next(error)
+        }
+    })
+}
+)
 
 module.exports=router;

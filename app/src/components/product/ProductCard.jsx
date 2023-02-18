@@ -1,13 +1,14 @@
 import React from 'react'
+import getPhotoUrl from '../../utils/getPhotoUrl';
 
 function ProductCard(props) {
   const { label, brand, category, price, photo_url } = props;
   return (
     <>
 
-      <div className="w-1/4 max-w-sm bg-white border border-gray-200 rounded-lg shadow-md dark:bg-gray-800 dark:border-gray-700">
+      <div className="max-w-sm bg-white border border-gray-200 rounded-lg shadow-md dark:bg-gray-800 dark:border-gray-700">
 
-        <img className="rounded-t-lg" src={photo_url} alt="product" />
+        <img className="rounded-t-lg" src={getPhotoUrl(photo_url)} alt="product" />
 
         <div className="p-5">
         <h3 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">{brand}</h3>

@@ -39,7 +39,7 @@ function ProductsPage() {
     const getProducts = async () => {
       fetch('http://localhost:3010/product/all')
         .then(data => data.json())
-        .then(json => json.payload)
+        .then(json => json.data)
         .then(products => setProducts([...products]))
         .catch(error => console.log(error.message))
 

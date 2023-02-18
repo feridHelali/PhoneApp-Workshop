@@ -1,5 +1,7 @@
 import React from 'react'
 import { useNavigate } from 'react-router-dom';
+import getPhotoUrl from '../../utils/getPhotoUrl';
+import FileUpload from '../FileUpload'
 
 
 function ProductList({ products,deleteProduct }) {
@@ -26,7 +28,7 @@ function ProductList({ products,deleteProduct }) {
                   className="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
                   <th scope="row" className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">{index + 1}</th>
                   <td className="px-6 py-4">
-                    <img src={product.photo_url} alt='cover'
+                    <img src={getPhotoUrl(product.photo_url)} alt='cover'
                     className='w-32 p-1 m-2 shadow-md'
                     /></td>
                   <td className="px-6 py-4">{product.label}</td>
@@ -46,6 +48,7 @@ function ProductList({ products,deleteProduct }) {
                         navigate(`/product/update/${product._id}`)
                        }}
                     >update</button>
+                       <FileUpload id={product._id} />
                   </td>
                 </tr>)
               )

@@ -25,7 +25,6 @@ const ProductSchema=new Schema({
     },
     photo_url:{
         type:String,
-        default:'https://guide-images.cdn.ifixit.com/igi/o4OjCNmNeOhvsS1P.standard'
     }
 
 })
