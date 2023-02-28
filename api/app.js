@@ -4,6 +4,8 @@ const morgan = require('morgan');
 const rfs = require("rotating-file-stream");
 const userRouter=require('./controllers/user.controller');
 const productRouter=require('./controllers/product.controller');
+const orderRouter=require('./controllers/order.controller')
+
 const path = require('path')
 
 const stream = rfs.createStream("access.log", {
@@ -21,6 +23,7 @@ app.use(morgan('tiny', { stream: stream }))
 
 app.use('/user',userRouter);
 app.use('/product',productRouter)
+app.use('/order',orderRouter)
 app.use('/uploads', express.static('uploads'))
 
 

@@ -27,7 +27,7 @@ const login = async (email, password) => {
     const user = await User.findOne({ email });
     if (user && (await bcrypt.compare(password, user.password))) {
         const token = jwt.sign(
-            { user_id: user._id,email:user.email }, process.env.SECRET_KEY || 'BLABLA', { expiresIn: "2h" }
+            { user_id: user._id,email:user.email,role:user.role }, process.env.SECRET_KEY || 'BLABLA', { expiresIn: "2h" }
         )
         return formatResponse('SUCCESS', 'User login Succfully', { ...user._doc, token: token })
     }

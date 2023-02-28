@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+const bcrypt = require("bcryptjs")
 
 const Schema=mongoose.Schema;
 
@@ -21,21 +22,27 @@ const UserSchema = new Schema({
         type: String,
         required : true
     },
+    role:{
+        type:String,
+        required:true,
+        default:"User",
+        enum:["User","Admin"]
+    },
     avatar_url:{
         type:String
     }
 })
 
 // hash user password before saving into database
-UserSchema.pre('save', function (next) {
-    if (!this.isModified('password')) {
-        return next();
-    }
+// UserSchema.pre('save', function (next) {
+//     if (!this.isModified('password')) {
+//         return next();
+//     }
 
-    const user = this;
-    this.password = bcrypt.hashSync(this.password, saltRounds);
-    next();
+//     const user = this;
+//     this.password = bcrypt.hashSync(this.password, 10);
+//     next();
 
-});
+// });
 
 module.exports=mongoose.model('User',UserSchema);
