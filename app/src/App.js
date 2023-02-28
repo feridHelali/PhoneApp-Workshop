@@ -10,36 +10,34 @@ import AboutPage from './pages/AboutPage';
 import Login from './components/user/Login';
 import Register from './components/user/Register';
 import Footer from './components/layout/Footer';
-import { UserContext } from './contexts/UserContext';
-import { useState } from 'react';
-import {  AlertProvider } from './components/Alert/AlertContext';
+
 import AlertPopup from './components/Alert/AlertPopup'
 import 'bootstrap/dist/css/bootstrap.min.css';
 
+import Cart from "./components/cart/Cart"
+
 function App() {
-  const [user, setUser] = useState(null)
+
 
   return (
-    <UserContext.Provider value={{user,setUser}}>
-      <AlertProvider> 
-      <Router>
-        <Navbar />
-        <AlertPopup />
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/products" element={<ProductsPage />} />
-          <Route path="/product/add" element={<AddProductForm />} />
-          <Route path="/product/update/:id" element={<UpdateProductForm />} />
-          <Route path="/product/detail/:id" element={<ProductDetail />} />
-          <Route path="/contact" element={<ContactPage />} />
-          <Route path="/about" element={<AboutPage />} />
-          <Route path="/login" element={<Login />} />
-          <Route path="/register" element={<Register />} />
-        </Routes>
-        <Footer />
-      </Router>
-      </AlertProvider>
-    </UserContext.Provider>
+    <Router>
+      <Navbar />
+      <AlertPopup />
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/about" element={<AboutPage />} />
+        <Route path="/cart" element={<Cart />} />
+        <Route path="/contact" element={<ContactPage />} />
+        <Route path="/products" element={<ProductsPage />} />
+        <Route path="/product/add" element={<AddProductForm />} />
+        <Route path="/product/update/:id" element={<UpdateProductForm />} />
+        <Route path="/product/detail/:id" element={<ProductDetail />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/register" element={<Register />} />
+      </Routes>
+      <Footer />
+
+    </Router>
 
   );
 }

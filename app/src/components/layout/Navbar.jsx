@@ -1,22 +1,24 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-import { UserContext } from '../../contexts/UserContext'
-import { useContext, useEffect } from 'react'
+import { useEffect } from 'react'
 import Logo from '../../logo.png';
 import { useNavigate } from 'react-router-dom';
-import { logout } from '../../services/AuthService';
-import Avatar from '../../avatar.png';
-import { isAuthenticated } from '../../services/AuthService';
+import Avatar from "../../assets/avatar.jpg"
+import { useAuth } from '../../hooks/useAuth';
+import { useCart } from '../../hooks/useCart';
+
 
 
 function Navbar() {
+  const { items } = useCart()
 
-  const { user, setUser } = useContext(UserContext)
-  const navigate=useNavigate();
+  const productCount = items.reduce((sum, product) => sum + product.quantity, 0);
+  const { user, logout, isAuthenticated } = useAuth()
+  const navigate = useNavigate();
 
-  useEffect(()=>{
-    setUser(isAuthenticated())
-   },[user])
+  useEffect(() => {
+    isAuthenticated()
+  })
 
   return (
     <>
@@ -45,21 +47,30 @@ function Navbar() {
               <li>
                 <Link to="/contact" className="block py-2 pl-3 pr-4 text-gray-700 border-b border-gray-100 hover:bg-gray-50 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-gray-400 md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700">Contact Us</Link>
               </li>
+              <li className='px-3 mx-3'>
+                <Link to='/cart' >
+                  <span className='p-3 m-1 text-gray-100 bg-blue-700 rounded-md shadow-lg hover:bg-blue-400'>
+                    Cart ({productCount}) items
+                  </span>
+                </Link>
+              </li>
               <li>
-                {!user ? (<button className='text-slate-800'
-                 onClick={()=>{
-                  navigate('/login')
-                 }}
-                >login</button>) :
-                  (<div className='flex flex-row justify-center align-middle'>
-                    <span className='p-1 m-1'>{user.fullName}</span> 
-                    <img src={Avatar} alt='avatar' className='h-12 p-2 m-2'/>
-                    <span className='p-1 m-1 cursor-pointer'
-                    onClick={()=>{
-                      logout();
-                      navigate('/');
-                    }}>logout</span>
-                  </div>)}
+                <div className='flex justify-center align-middle'>
+                  {!user ? (<button className='text-slate-800'
+                    onClick={() => {
+                      navigate('/login')
+                    }}
+                  >login</button>) :
+                    (<div className='flex flex-row justify-center align-middle'>
+                      <span className='p-1 m-1'>{user.fullName}</span>
+                      <img src={Avatar} alt='avatar' className='h-12 p-2 m-2' />
+                      <span className='p-1 m-1 cursor-pointer'
+                        onClick={() => {
+                          logout();
+                          navigate('/');
+                        }}>logout</span>
+                    </div>)}
+                </div>
               </li>
 
             </ul>

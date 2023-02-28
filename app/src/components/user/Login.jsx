@@ -1,14 +1,13 @@
 import React from 'react'
-import { useState,useContext } from 'react'
+import { useState} from 'react'
 import { Link } from "react-router-dom"
 import Swal from 'sweetalert2';
 import { useNavigate } from 'react-router-dom';
-import { login,isAuthenticated } from '../../services/AuthService';
-import {UserContext} from '../../contexts/UserContext'
+import { useAuth } from '../../hooks/useAuth';
 
 function Login() {
   const navigate=useNavigate()
-  const {setUser}= useContext(UserContext)
+  const {login}=useAuth()
   const [credentials, setCredentials] = useState({
     email: "",
     password: ""
@@ -59,9 +58,10 @@ function Login() {
                   className="inline-block py-3 text-sm font-medium leading-snug text-white uppercase transition duration-150 ease-in-out bg-blue-600 rounded shadow-md px-7 hover:bg-blue-700 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg"
                   onClick={() => 
                     login(credentials.email,credentials.password)
-                    .then(payload=>{
-                      setUser(payload);
-                      navigate('/')
+                    .then(res=>{
+                      if(res.status!=='Error'){
+                        navigate('/')
+                      }
                     })
                     .catch(error=>{
                       Swal.fire({
