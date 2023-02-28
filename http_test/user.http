@@ -2,8 +2,8 @@ POST http://localhost:3010/user/register
 Content-Type: application/json
 
 {
-    "fullName":"Salem",
-    "email":"salem@hotmail.com",
+    "fullName":"Admin",
+    "email":"admin@gmail.com",
     "password":"toto"
 }
 
@@ -12,7 +12,7 @@ POST http://localhost:3010/user/login
 Content-Type: application/json
 
 {
-    "email":"salem@gmail.com",
+    "email":"admin@gmail.com",
     "password":"toto"
 }
 

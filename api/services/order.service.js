@@ -28,7 +28,7 @@ const cancelAnOrder = async (id) => {
 }
 
 const getMyOrders = async (userId) => {
-    const result = await Order.find({ user: id })
+    const result = await Order.find({ user: userId })
         .populate({ path: 'user', select: 'fullName' })
         .populate({ path: 'detail', populate: { path: 'product', select: 'label brand price' } })
         .exec()

@@ -138,3 +138,5 @@ POST /user/login 200 65 - 125.028 ms
 POST /user/register 200 244 - 131.162 ms
 POST /user/login 200 483 - 131.482 ms
 GET /order/all 200 831 - 17.640 ms
+GET /order/my-orders 200 29 - 9.315 ms
+GET /order/my-orders 200 35 - 28.340 ms

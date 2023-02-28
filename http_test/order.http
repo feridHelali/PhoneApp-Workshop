@@ -1,0 +1,25 @@
+POST http://localhost:3010/order/add 
+Content-Type: application/json
+x-access-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiNjNmZGQwOTA1OGM1Y2M3ODI5NGI4ZjA2IiwiZW1haWwiOiJsZWlsYUBnbWFpbC5jb20iLCJyb2xlIjoiVXNlciIsImlhdCI6MTY3NzU3ODY1NCwiZXhwIjoxNjc3NTg1ODU0fQ.nszWcAB7qe6icfZ8HlkPdEwLBAiB0RqzA4qxHFGJ1M0
+
+{
+    "details":[
+        {
+            "product":"63ce6f12a0be2b6ca5a66f05",
+            "qte":5
+        },
+        {
+            "product":"63ce6f32a0be2b6ca5a66f0a",
+            "qte":5
+        }
+    ]
+}
+
+###
+GET http://localhost:3010/order/all
+x-access-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiNjNmZGQyYmMzZjk5NWVmNmRmZTI3Y2IzIiwiZW1haWwiOiJhZG1pbkBnbWFpbC5jb20iLCJyb2xlIjoiQWRtaW4iLCJpYXQiOjE2Nzc1NzkwMDMsImV4cCI6MTY3NzU4NjIwM30.rhHMWSg8NOuNqYcj75iLBtzXfkRih5Jlwa-GWuVEuMA
+
+
+###
+GET http://localhost:3010/order/my-orders
+x-access-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiNjNmZGQyYmMzZjk5NWVmNmRmZTI3Y2IzIiwiZW1haWwiOiJhZG1pbkBnbWFpbC5jb20iLCJyb2xlIjoiQWRtaW4iLCJpYXQiOjE2Nzc1NzkwMDMsImV4cCI6MTY3NzU4NjIwM30.rhHMWSg8NOuNqYcj75iLBtzXfkRih5Jlwa-GWuVEuMA
