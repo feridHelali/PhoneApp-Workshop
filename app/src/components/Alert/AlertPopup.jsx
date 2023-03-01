@@ -6,7 +6,8 @@ import Button from 'react-bootstrap/Button'
 import {BiErrorCircle} from 'react-icons/bi'
 
 function AlertPopup() {
-    const [state, dispatch] = useAlert()
+    // eslint-disable-next-line no-unused-vars
+    const [state, _] = useAlert()
 
     const [open, setOpen] = useState(false)
     const [alertType, setAlertType] = useState(AlertType.NONE)

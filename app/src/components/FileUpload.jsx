@@ -1,4 +1,4 @@
-import React, { useRef } from 'react'
+import React  from 'react'
 import { useState } from 'react'
 import axios from 'axios'
 import { useAlert } from './Alert/AlertContext'
@@ -9,7 +9,9 @@ function FileUpload({ id }) {
     const [preview, setPreview] = useState("")
     const [file, setFile] = useState({})
     const [readyToUpload, setReadyToUpload] = useState(false)
-    const [state, dispatch] = useAlert()
+    
+    // eslint-disable-next-line no-unused-vars
+    const [ _ , dispatch] = useAlert()
 
 
     const handleChange = (e) => {
@@ -51,7 +53,7 @@ function FileUpload({ id }) {
                     type="file"
                     onChange={(e) => handleChange(e)} />
             </label>
-            {readyToUpload ? <img src={preview} /> : (<></>)}
+            {readyToUpload ? <img src={preview} alt="previewer"/> : (<></>)}
             <input type='submit' variant="primary" disabled={!readyToUpload} value="Upload" />
         </form>
 

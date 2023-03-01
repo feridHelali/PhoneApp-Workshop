@@ -7,7 +7,10 @@ import { AlertActions } from '../Alert/alert.actions'
 import { useAlert } from '../Alert/AlertContext'
 
 function Register() {
+
+  // eslint-disable-next-line no-unused-vars
   const [_, dispatch] = useAlert()
+  
  // const queryClient = useQueryClient()
   const navigate = useNavigate()
 
