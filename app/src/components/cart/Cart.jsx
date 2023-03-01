@@ -18,7 +18,7 @@ function Cart() {
 
 
     if (loading) {
-        return <h1>Il Loading ...</h1>
+        return <h1>Is Loading ...</h1>
     }
 
     if (error) {
