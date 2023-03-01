@@ -7,7 +7,7 @@ function AuthContextProvider({ children }) {
     const [user, setUser]=useState(null)
 
     const login=async (email,password)=>{
-        const response = await fetch('http://localhost:3010/users/login',{
+        const response = await fetch('http://localhost:3010/user/login',{
             method:'POST',
             headers:{
                 'Content-Type':'application/json'

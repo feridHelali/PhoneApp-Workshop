@@ -14,8 +14,6 @@ function Login() {
   });
 
 
-
-
   return (
     <section className="h-screen bg-gray-200">
       <div className="h-full px-6 text-gray-800 shadow-md">
