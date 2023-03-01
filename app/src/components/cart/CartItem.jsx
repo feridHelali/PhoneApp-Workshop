@@ -16,10 +16,9 @@ function CartItem({ id, quantity }) {
                 <div className="overflow-x-auto sm:-mx-6 lg:-mx-8">
                     <div className="inline-block min-w-full py-2 sm:px-6 lg:px-8">
                         <div className="overflow-hidden">
-                            <table className="min-w-full">
+                            <table className="w-full">
                                 <tbody>
                                     <tr className="transition duration-300 ease-in-out bg-white border-b hover:bg-gray-100">
-
                                         <td className="px-6 py-4 text-sm font-light text-gray-900 whitespace-nowrap">
                                             {getProductData(id)?.label}
                                         </td>
@@ -29,7 +28,7 @@ function CartItem({ id, quantity }) {
                                         </td>
 
                                         <td className="px-6 py-4 text-sm font-light text-gray-900 whitespace-nowrap">
-                                            {quantity}
+                                           {quantity}
                                         </td>
 
                                         <td className="px-6 py-4 text-sm font-light text-gray-900 whitespace-nowrap">
