@@ -6,7 +6,7 @@ import CartItem from './CartItem';
 
 function Cart() {
     const cart = useCart()
-    const { products,error, isLoading } = useGetProduct();
+    const { products,error, loading } = useGetProduct();
     const productsCount = cart.items.reduce((sum, p) => sum + p.quantity, 0);
 
     function getProductData(id) {
@@ -16,12 +16,12 @@ function Cart() {
     const totalCost = cart.items.reduce((sum, currentProduct) => sum + getProductData(currentProduct.id)?.price, 0);
 
 
-    if(isLoading){
+    if(loading){
         return <h1>Il Loading ...</h1>
     }
 
     if(error){
-        return <h1>Error</h1>
+        return <h1>Error happen</h1>
     }
 
     return (

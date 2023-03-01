@@ -1,7 +1,6 @@
-const router=require('express').Router();
-const userService=require('../services/user.service');
-const formatResponse=require('../utilities/format.response')
-const authentication=require('../middlewares/authentication');
+const router=require('express').Router()
+const userService=require('../services/user.service')
+const authentication=require('../middlewares/authentication')
 
 router.post('/register',async (req,res)=>{
     const {fullName,email,password}=req.body;

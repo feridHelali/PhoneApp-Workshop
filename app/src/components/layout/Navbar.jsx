@@ -18,7 +18,7 @@ function Navbar() {
 
   useEffect(() => {
     isAuthenticated()
-  })
+  },[user,logout,isAuthenticated])
 
   return (
     <>

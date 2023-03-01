@@ -1,5 +1,5 @@
 
-import { useMutation, useQueryClient } from '@tanstack/react-query'
+import { useMutation,/* useQueryClient */ } from '@tanstack/react-query'
 import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import api from '../../api/common.http'
@@ -7,33 +7,28 @@ import { AlertActions } from '../Alert/alert.actions'
 import { useAlert } from '../Alert/AlertContext'
 
 function Register() {
-  const [_,dispatch] = useAlert()
-  const queryClient=useQueryClient()
-  const navigate=useNavigate()
+  const [_, dispatch] = useAlert()
+ // const queryClient = useQueryClient()
+  const navigate = useNavigate()
 
   const [userInfo, setUserInfo] = useState({
     fullName: "",
     email: "",
     password: ""
   })
- 
+
   const newUserMutation = useMutation({
-    mutationFn: (userInfo)=>api.post('/user/register',userInfo),
-    onError:(error)=>dispatch(AlertActions.showErrorAlert(error.message)),
-    onSuccess:(res)=>{
-      console.log(res.data)
-      if(res.data?.status==="ERROR"){
-        dispatch(AlertActions.showErrorAlert(res.data.message))
-      }else{
-        dispatch(AlertActions.showSuccessAlert(res.data?.message))
-          navigate("/")
-      }
+    mutationFn: (userInfo) => api.post('/user/register', userInfo),
+    onError: (error) => {
+      dispatch(AlertActions.showErrorAlert(error?.response?.data?.error))
+    },
+    onSuccess: () => {
+      navigate("/")
     }
   })
-   
-  const handleSubmit=(e)=>{
+
+  const handleSubmit = (e) => {
     e.preventDefault()
-    console.log(userInfo)
     newUserMutation.mutate(userInfo)
   }
 
@@ -54,8 +49,8 @@ function Register() {
                   id="fullName"
                   placeholder="User Name"
                   value={userInfo.fullName}
-                  onChange={(event)=>{
-                    setUserInfo({...userInfo,fullName:event.target.value})
+                  onChange={(event) => {
+                    setUserInfo({ ...userInfo, fullName: event.target.value })
                   }}
                 />
               </div>
@@ -67,8 +62,8 @@ function Register() {
                   id="email"
                   placeholder="Email address"
                   value={userInfo.email}
-                  onChange={(event)=>{
-                    setUserInfo({...userInfo,email:event.target.value})
+                  onChange={(event) => {
+                    setUserInfo({ ...userInfo, email: event.target.value })
                   }}
                 />
               </div>
@@ -81,8 +76,8 @@ function Register() {
                   id="password"
                   placeholder="Password"
                   value={userInfo.password}
-                  onChange={(event)=>{
-                    setUserInfo({...userInfo,password:event.target.value})
+                  onChange={(event) => {
+                    setUserInfo({ ...userInfo, password: event.target.value })
                   }}
                 />
               </div>
