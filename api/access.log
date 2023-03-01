@@ -140,3 +140,9 @@ POST /user/login 200 483 - 131.482 ms
 GET /order/all 200 831 - 17.640 ms
 GET /order/my-orders 200 29 - 9.315 ms
 GET /order/my-orders 200 35 - 28.340 ms
+GET /product/all 200 21 - 3052.256 ms
+GET /product/all 304 - - 3.825 ms
+GET /product/all 304 - - 4.772 ms
+GET /product/all 304 - - 3.175 ms
+GET /product/all 304 - - 5.059 ms
+GET /product/all 304 - - 3.599 ms
