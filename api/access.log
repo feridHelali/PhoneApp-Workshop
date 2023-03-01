@@ -381,3 +381,10 @@ GET /product/all 304 - - 7.896 ms
 GET /product/all 304 - - 4.573 ms
 GET /product/all 304 - - 4.256 ms
 GET /product/all 304 - - 13.353 ms
+GET /product/all 304 - - 4.164 ms
+GET /product/all 304 - - 8.105 ms
+GET /uploads/photo-1677676409039.png 304 - - 2.197 ms
+GET /uploads/photo-1677676475388.png 304 - - 1.692 ms
+GET /uploads/photo-1677676540597.png 304 - - 2.195 ms
+GET /uploads/photo-1677676640965.png 304 - - 0.621 ms
+GET /uploads/photo-1677676647572.png 304 - - 0.397 ms

@@ -14,6 +14,7 @@ function Cart() {
     }
 
     const totalCost = cart.items.reduce((sum, currentProduct) => sum + getProductData(currentProduct.id)?.price, 0);
+    
 
 
     if(loading){

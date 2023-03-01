@@ -23,6 +23,7 @@ function Home() {
       {
         products.map(product=>(
           <ProductCard key={product._id} 
+          id={product._id} 
           label={product.label} 
           brand={product.brand}
           category={product.category}

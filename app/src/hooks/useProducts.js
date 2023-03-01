@@ -9,7 +9,7 @@ function useGetProduct() {
     async function getAllProducts() {
         fetch('http://localhost:3010/product/all')
             .then(data => data.json())
-            .then(data => setProducts(data))
+            .then(json => setProducts(json.data))
             .catch(error => {
                 setError(true);
             })
