@@ -28,12 +28,12 @@ app.use('/uploads', express.static('uploads'))
 
 
 app.get('/',(req,res)=>{
-        res.json({message:'Api Ok'});
+        res.json({message:'Alfa Phone Shop API'});
 })
 
 app.use((error,req,res,next)=>{
         if(error.Type)
-        res.json({Error:`500 Server Error ${error.message}`});
+        res.status(500).json({Error:`500 Server Error ${error.message}`});
 })
 
 

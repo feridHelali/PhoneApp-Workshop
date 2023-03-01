@@ -12,7 +12,7 @@ router.post('/add',verifyToken,async (req,res)=>{
         const result = await orderService.order(new Date(),userId,details)
         res.json({message:"Order added successfully",data:result})
     } catch (error) {
-        res.json({error:error.message})
+        res.status(400).json({error:error.message})
     }
 })
 
@@ -21,7 +21,7 @@ router.get('/all',verifyToken,isAdmin,async (req,res)=>{
         const result = await orderService.getAllOrders()
         res.json({message:"All Orders",data:result})
     } catch (error) {
-        res.json({error:error.message})
+        res.status(400).json({error:error.message})
     }
 })
 
@@ -32,7 +32,7 @@ router.get('/my-orders',verifyToken,async (req,res)=>{
         const result = await orderService.getMyOrders(userId)
         res.json({message:"Your Orders",data:result})
     } catch (error) {
-        res.json({error:error.message})
+        res.status(400).json({error:error.message})
     }
 })
 
