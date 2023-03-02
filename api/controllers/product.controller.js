@@ -13,7 +13,7 @@ router.post('/add',postProductValidator,validateRequestSchema,async (req,res)=>{
         const result = await productService.addProduct({label,brand,category,price});
         res.json(result)
     } catch (error) {
-        res.json(formatResponse('ERROR',error.message))
+        res.status(400).json({error:error.message})
     }
 })
 
@@ -22,7 +22,7 @@ router.get('/all',paginatedResult(require('../models/product.model')),async (req
        const result = await productService.getAllProducts();
        res.json(res.result) 
     } catch (error) {
-        res.json(formatResponse('ERROR',error.message)) 
+        res.status(400).json({error:error.message})
     }
 })
 
@@ -32,7 +32,7 @@ router.get('/:id',async (req,res)=>{
        const result = await productService.getProductById(id);
        res.json(result) 
     } catch (error) {
-        res.json(formatResponse('ERROR',error.message)) 
+        res.status(400).json({error:error.message})
     }
 })
 
@@ -43,7 +43,7 @@ router.put('/:id',async (req,res)=>{
        const result = await productService.updateProduct(id,{label,brand,category,price})
        res.json(result) 
     } catch (error) {
-        res.json(formatResponse('ERROR',error.message)) 
+        res.status(400).json({error:error.message})
     }
 })
 
@@ -53,7 +53,7 @@ router.delete('/:id',async (req,res)=>{
        const result = await productService.deleteProduct(id)
        res.json(result) 
     } catch (error) {
-        res.json(formatResponse('ERROR',error.message)) 
+        res.status(400).json({error:error.message})
     }
 })
 

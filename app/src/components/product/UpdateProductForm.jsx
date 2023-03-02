@@ -49,14 +49,14 @@ function UpdateProductForm() {
       body:JSON.stringify(newProduct)
      }).then(data=>data.json())
      .then(json=>{
-     if(json.status="success"){
+     if(json.status==="success"){
            Swal.fire({
         title: 'Success',
-        text: "Successfully Udated",
+        text: "Successfully Updated",
         icon: 'success',
         confirmButtonText: 'Ok'
       })
-    }else if(json.status="error"){
+    }else if(json.status==="error"){
       Swal.fire({
         title: 'Error',
         text: "Failed to Update the Product",

@@ -8,8 +8,7 @@ const register = async (fullName, email, password) => {
     const oldUser = await User.findOne({ email })
 
     if (oldUser) {
-        const result = formatResponse('ERROR', 'User Already exist')
-        return result;
+       throw new Error('User Already exist')
     }
 
     const encryptedPassword = await bcrypt.hash(password, 10);
@@ -20,26 +19,23 @@ const register = async (fullName, email, password) => {
         password: encryptedPassword
     });
     const result = await newUser.save();
-    return formatResponse('SUCCESS', 'User Registred Succefully', result);
+    return formatResponse('Success', 'User Registred Successfully', result);
 }
 
 const login = async (email, password) => {
     const user = await User.findOne({ email });
     if (user && (await bcrypt.compare(password, user.password))) {
         const token = jwt.sign(
-            { user_id: user._id,email:user.email,role:user.role }, process.env.SECRET_KEY || 'BLABLA', { expiresIn: "2h" }
+            { user_id: user._id, email: user.email, role: user.role }, process.env.SECRET_KEY || 'BLABLA', { expiresIn: "2h" }
         )
-        return formatResponse('SUCCESS', 'User login Succfully', { ...user._doc, token: token })
+        return formatResponse('Success', 'User login Successfully', { ...user._doc, token: token })
     }
-    return formatResponse('ERROR', "Invalid Credentials")
+    return formatResponse('Error', "Invalid Credentials")
 }
 
-const getAllUsers = async ()=>{
-  const users = await User.find({});
-  if(users){
-    return formatResponse('SUCESS','All Users',users)
-  }
-  return formatResponse('ERROR','Error Occured')
+const getAllUsers = async () => {
+    const users = await User.find({});
+    return formatResponse('Success', 'All Users', users)
 }
 
 module.exports = {

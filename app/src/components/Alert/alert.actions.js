@@ -48,5 +48,5 @@ export const AlertActions = {
     showErrorAlert,
     showWarningAlert,
     showInfoAlert,
-    showInfoAlert
+    showNoneAlert
 }
