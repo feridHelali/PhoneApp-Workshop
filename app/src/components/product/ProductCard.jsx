@@ -20,7 +20,7 @@ function ProductCard(props) {
           <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">{label}</h5>
 
           <p className="mb-3 font-normal text-gray-700 dark:text-gray-400">{category}</p>
-          <p className="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-gray-900 focus:ring-4 focus:outline-none text-lg">
+          <p className="inline-flex items-center px-3 py-2 font-medium text-center text-gray-900 focus:ring-4 focus:outline-none text-lg">
             {price.toFixed(3)}
           </p>
           {productQuantity > 0 ?

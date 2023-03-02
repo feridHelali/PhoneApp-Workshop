@@ -2,7 +2,6 @@ import React from 'react'
 import { useCart } from '../../hooks/useCart'
 import useGetProduct from '../../hooks/useProducts';
 import CartItem from './CartItem';
-import { useAuth } from '../../hooks/useAuth';
 import { useMutation } from '@tanstack/react-query';
 import { useAlert } from '../Alert/AlertContext';
 import { AlertActions } from '../Alert/alert.actions';
@@ -11,7 +10,9 @@ import { useNavigate } from 'react-router-dom';
 
 
 function Cart() {
+    // eslint-disable-next-line no-unused-vars
     const [_,dispatch]= useAlert()
+    
     const navigate=useNavigate()
     const cart = useCart()
     const { products, error, loading } = useGetProduct();
