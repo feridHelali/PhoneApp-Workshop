@@ -1,22 +1,11 @@
 import React from 'react'
-import { useEffect,useState } from 'react'
 import ProductCard from '../components/product/ProductCard';
+import useGetProducts from '../hooks/useProducts';
 
 
 function Home() {
-  const [products, setProducts] = useState([]);
 
-  useEffect(() => {
-    const getProducts = async () => {
-      fetch('http://localhost:3010/product/all')
-        .then(data => data.json())
-        .then(json => json.data)
-        .then(products => setProducts([...products]))
-        .catch(error => console.log(error.message))
-
-    }
-    getProducts()
-  }, [])
+  const {products}=useGetProducts()
 
   return (
     <div className='flex flex-wrap self-center justify-center flex-grow gap-2 p-2 m-1 md:flex-row sm:flex-col'>

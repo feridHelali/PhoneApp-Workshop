@@ -1,10 +1,11 @@
 import React from 'react'
 import getPhotoUrl from '../../utils/getPhotoUrl';
 import { useCart } from '../../hooks/useCart'
+import {useAuth} from "../../hooks/useAuth"
 
 function ProductCard(props) {
   const { id, label, brand, category, price, photo_url } = props;
-
+  const {user}=useAuth()
   const cart = useCart()
   const productQuantity = cart.getProductQuantity(id);
 
@@ -42,14 +43,15 @@ function ProductCard(props) {
               </div>
 
             </>) : (
-              <p className="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 
+              <button className={`inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 
           rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600
-           dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+           dark:hover:bg-blue-700 dark:focus:ring-blue-800 ${!user?'disabled:bg-gray-400':""}`}
+                disabled={!user?true:false}
                 onClick={() => {
                   cart.addOneToCart(id)
                 }}>
                 Add To Cart
-              </p>
+              </button>
             )
           }
         </div>
