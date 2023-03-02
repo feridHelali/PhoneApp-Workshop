@@ -1,11 +1,28 @@
 import React from 'react'
 import ProductCard from '../components/product/ProductCard';
-import useGetProducts from '../hooks/useProducts';
+import { useProductsData } from '../hooks/useProductsData';
+
 
 
 function Home() {
 
-  const {products}=useGetProducts()
+  const onSuccess=(data)=>{
+    console.log(data)
+  }
+
+  const onError=(error)=>{
+    console.log(error)
+  }
+
+  const {data:products,isLoading,isError,error,isFetching}=useProductsData(onSuccess,onError)
+ 
+  if(isLoading || isFetching){
+    return <h1>Loading ...</h1>
+  }
+
+  if(isError){
+    return <h1>{error.message}</h1>
+  }
 
   return (
     <div className='flex flex-wrap self-center justify-center flex-grow gap-2 p-2 m-1 md:flex-row sm:flex-col'>
