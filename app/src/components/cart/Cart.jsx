@@ -2,9 +2,17 @@ import React from 'react'
 import { useCart } from '../../hooks/useCart'
 import useGetProduct from '../../hooks/useProducts';
 import CartItem from './CartItem';
+import { useAuth } from '../../hooks/useAuth';
+import { useMutation } from '@tanstack/react-query';
+import { useAlert } from '../Alert/AlertContext';
+import { AlertActions } from '../Alert/alert.actions';
+import api from '../../api/common.http';
+import { useNavigate } from 'react-router-dom';
 
 
 function Cart() {
+    const [_,dispatch]= useAlert()
+    const navigate=useNavigate()
     const cart = useCart()
     const { products, error, loading } = useGetProduct();
     const productsCount = cart.items.reduce((sum, p) => sum + p.quantity, 0);
@@ -13,9 +21,27 @@ function Cart() {
         return products.find(product => product._id === id);
     }
 
-    const totalCost =cart.items.reduce((sum, currentProduct) => sum + getProductData(currentProduct.id)?.price, 0);
+    const mapToBody = (items)=>{
+        return items.map(item=>{
+            return ({
+              product:item.id,
+              qte:item.qte
+            })
+        })
+      }
 
+    const totalCost = cart.items.reduce((sum, currentProduct) => sum + getProductData(currentProduct.id)?.price, 0);
 
+    const postOrderMutation = useMutation({
+        mutationFn:()=>api.post('/order/add',{details:mapToBody(cart.items)}),
+        onError:(error)=>{
+            dispatch(AlertActions.showErrorAlert(error.message))
+        },
+        onSuccess:(res)=>{
+            dispatch(AlertActions.showInfoAlert(res?.data?.message))
+            navigate('/')
+        }
+    })
 
     if (loading) {
         return <h1>Is Loading ...</h1>
@@ -23,6 +49,12 @@ function Cart() {
 
     if (error) {
         return <h1>Error happen</h1>
+    }
+
+
+    const postOrderHandler = () => {
+        console.log(cart.items)
+        postOrderMutation.mutate({...cart.items})
     }
 
     return (
@@ -49,11 +81,13 @@ function Cart() {
                     font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-blue-700 
                     hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0
                     active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out"
-                    onClick={()=>{
-                        console.log(cart.items.map(item=>({
-                            ...item,label:getProductData(item.id).label,price:getProductData(item.id).price
-                        })))
-                    }}>
+                                    onClick={() => {
+                                        console.log(cart.items.map(item => ({
+                                            ...item, label: getProductData(item.id).label, price: getProductData(item.id).price
+                                        })))
+
+                                        postOrderHandler()
+                                    }}>
                                     Order Now !
                                 </button>
                             </>)
