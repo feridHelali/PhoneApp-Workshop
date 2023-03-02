@@ -1,62 +1,70 @@
 import React from 'react'
 import { useCart } from '../../hooks/useCart'
-import useGetProduct from '../../hooks/useProducts';
 import CartItem from './CartItem';
 import { useMutation } from '@tanstack/react-query';
 import { useAlert } from '../Alert/AlertContext';
 import { AlertActions } from '../Alert/alert.actions';
 import api from '../../api/common.http';
 import { useNavigate } from 'react-router-dom';
+import { useProductsData } from '../../hooks/useProductsData'
 
 
 function Cart() {
     // eslint-disable-next-line no-unused-vars
-    const [_,dispatch]= useAlert()
-    
-    const navigate=useNavigate()
+    const [_, dispatch] = useAlert()
+    const navigate = useNavigate()
     const cart = useCart()
-    const { products, error, loading } = useGetProduct();
-    const productsCount = cart.items.reduce((sum, p) => sum + p.quantity, 0);
 
-    function getProductData(id) {
-        return products.find(product => product._id === id);
-    }
-
-    const mapToBody = (items)=>{
-        return items.map(item=>{
-            return ({
-              product:item.id,
-              qte:item.qte
-            })
-        })
-      }
-
-    const totalCost = cart.items.reduce((sum, currentProduct) => sum + getProductData(currentProduct.id)?.price, 0);
+    const { data: products, isLoading, isError, error, isFetching } = useProductsData(onSuccess, onError)
 
     const postOrderMutation = useMutation({
-        mutationFn:()=>api.post('/order/add',{details:mapToBody(cart.items)}),
-        onError:(error)=>{
+        mutationFn: () => api.post('/order/add', { details: mapToBody(cart.items) }),
+        onError: (error) => {
             dispatch(AlertActions.showErrorAlert(error.message))
         },
-        onSuccess:(res)=>{
+        onSuccess: (res) => {
             cart.cleanCart()
             dispatch(AlertActions.showInfoAlert(res?.data?.message))
             navigate('/')
         }
     })
 
-    if (loading) {
-        return <h1>Is Loading ...</h1>
+    function onSuccess(data) {
+        console.log(data)
     }
 
-    if (error) {
-        return <h1>Error happen</h1>
+    function onError(error) {
+        console.log(error)
     }
 
+
+    if (isLoading || isFetching) {
+        return <h1>Loading ...</h1>
+    }
+
+    if (isError) {
+        return <h1>{error.message}</h1>
+    }
+
+    const productsCount = cart.items.reduce((sum, p) => sum + p.quantity, 0);
+
+    function getProductData(id) {
+        return products.find(product => product._id === id);
+    }
+
+    function mapToBody(items) {
+        return items.map(item => {
+            return ({
+                product: item.id,
+                qte: item.quantity
+            })
+        })
+    }
+
+    const totalCost = cart.items.reduce((sum, currentProduct) => sum + getProductData(currentProduct.id)?.price, 0);
 
     const postOrderHandler = () => {
-        console.log(cart.items)
-        postOrderMutation.mutate({...cart.items})
+        postOrderMutation.mutate({ ...cart.items })
     }
 
     return (
@@ -84,10 +92,6 @@ function Cart() {
                     hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0
                     active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out"
                                     onClick={() => {
-                                        console.log(cart.items.map(item => ({
-                                            ...item, label: getProductData(item.id).label, price: getProductData(item.id).price
-                                        })))
-
                                         postOrderHandler()
                                     }}>
                                     Order Now !

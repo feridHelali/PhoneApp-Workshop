@@ -1,14 +1,31 @@
 import React from 'react'
-import { useAuth } from '../../hooks/useAuth';
 import { useCart } from '../../hooks/useCart';
-import useGetProducts from '../../hooks/useProducts'
+import {useProductsData} from '../../hooks/useProductsData'
 
 function CartItem({ id, quantity }) {
     const cart = useCart();
-    const { products } = useGetProducts()
+   
+    const { data: products, isLoading, isError, error, isFetching } = useProductsData(onSuccess, onError)
 
     function getProductData(id) {
         return products.find(product => product._id === id);
+    }
+
+    function onSuccess(data) {
+        console.log(data)
+    }
+
+    function onError(error) {
+        console.log(error)
+    }
+
+
+    if (isLoading || isFetching) {
+        return <h1>Loading ...</h1>
+    }
+
+    if (isError) {
+        return <h1>{error.message}</h1>
     }
 
     return (

@@ -15,6 +15,7 @@ import AlertPopup from './components/Alert/AlertPopup'
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 import Cart from "./components/cart/Cart"
+import MyOrdersList from './components/order/MyOrdersList';
 
 function App() {
 
@@ -32,6 +33,7 @@ function App() {
         <Route path="/product/add" element={<AddProductForm />} />
         <Route path="/product/update/:id" element={<UpdateProductForm />} />
         <Route path="/product/detail/:id" element={<ProductDetail />} />
+        <Route path="/myorders" element={<MyOrdersList />} />
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
       </Routes>
