@@ -38,6 +38,7 @@ function Cart() {
             dispatch(AlertActions.showErrorAlert(error.message))
         },
         onSuccess:(res)=>{
+            cart.cleanCart()
             dispatch(AlertActions.showInfoAlert(res?.data?.message))
             navigate('/')
         }

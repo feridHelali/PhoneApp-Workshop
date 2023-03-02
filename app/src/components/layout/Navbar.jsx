@@ -10,7 +10,7 @@ import { useCart } from '../../hooks/useCart';
 
 
 function Navbar() {
-  const { items } = useCart()
+  const { items,cleanCart } = useCart()
 
   const productCount = items.reduce((sum, product) => sum + product.quantity, 0);
   const { user, logout, isAuthenticated } = useAuth()
@@ -66,6 +66,7 @@ function Navbar() {
                       <img src={Avatar} alt='avatar' className='h-12 p-2 m-2' />
                       <span className='p-1 m-1 cursor-pointer'
                         onClick={() => {
+                          cleanCart()
                           logout();
                           navigate('/');
                         }}>logout</span>

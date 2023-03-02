@@ -60,6 +60,10 @@ function CartContextProvider({ children }) {
         )
     }
 
+    function cleanCart(){
+        setCartProducts([]);
+    }
+
     function getTotalConst() {
     }
 
@@ -69,7 +73,8 @@ function CartContextProvider({ children }) {
         addOneToCart,
         removeOneFromCart,
         deleteFromCart,
-        getTotalConst
+        getTotalConst,
+        cleanCart
     }
 
     return (
