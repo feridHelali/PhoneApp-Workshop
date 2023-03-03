@@ -6,6 +6,7 @@ import { useNavigate } from 'react-router-dom';
 import Avatar from "../../assets/avatar.jpg"
 import { useAuth } from '../../hooks/useAuth';
 import { useCart } from '../../hooks/useCart';
+import {BiCartAlt} from 'react-icons/bi'
 
 
 
@@ -47,11 +48,10 @@ function Navbar() {
               <li>
                 <Link to="/contact" className="block py-2 pl-3 pr-4 text-gray-700 border-b border-gray-100 hover:bg-gray-50 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-gray-400 md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700">Contact Us</Link>
               </li>
-              <li className='px-3 mx-3'>
+              <li className='px-3 flex flex-row'>
                 <Link to='/cart' >
-                  <span className='p-3 m-1 text-gray-100 bg-blue-700 rounded-md shadow-lg hover:bg-blue-400'>
-                    Cart ({productCount}) items
-                  </span>
+                  <BiCartAlt style={{fontSize:"1.7rem"}}/>
+                     ({productCount}) items
                 </Link>
               </li>
               <li>

@@ -7,6 +7,7 @@ import { AlertActions } from '../Alert/alert.actions';
 import api from '../../api/common.http';
 import { useNavigate } from 'react-router-dom';
 import { useProductsData } from '../../hooks/useProductsData'
+import {BiCartAlt} from 'react-icons/bi'
 
 
 function Cart() {
@@ -69,9 +70,9 @@ function Cart() {
 
     return (
         <div className="flex justify-center w-full">
-            <div className="max-w-sm text-center bg-white rounded-lg shadow-lg">
+            <div className="text-center bg-white rounded-lg shadow-lg">
                 <div className="px-6 py-3 border-b border-gray-300">
-                    Shopping Cart
+                    Shopping Cart <BiCartAlt style={{fontSize:"3rem"}}/>
                 </div>
                 <div className="flex flex-col w-auto p-2 m-1">
                     {
