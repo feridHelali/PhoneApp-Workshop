@@ -67,14 +67,16 @@ function Navbar() {
                     }}
                   >login</button>) :
                     (<div className='flex flex-row justify-center align-middle'>
-                      <span className='p-1 m-1'>{user.fullName}</span>
-                      <img src={Avatar} alt='avatar' className='h-12 p-2 m-2' />
-                      <span className='p-1 m-1 cursor-pointer'
+                      <div className='flex flex-col'>
+                      <p className='px-2'>{user.fullName}</p>
+                      <p className='px-2 cursor-pointer'
                         onClick={() => {
                           cleanCart()
                           logout();
                           navigate('/');
-                        }}>logout</span>
+                        }}>logout</p>
+                        </div>
+                      <img src={Avatar} alt='avatar' className='h-12 px-2' style={{borderRadius:"50%"}} />
                     </div>)}
                 </div>
               </li>

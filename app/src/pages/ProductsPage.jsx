@@ -58,9 +58,9 @@ function ProductsPage() {
         >
           Add Product
         </button>
-        <select className='w-1/2 p-1 m-1 font-mono text-gray-800 rounded-md border-spacing-2 '>
-          <option value="Smart Phone" onChange={e=>{}}>Smart Phone</option>
-          <option value="Tablet" onChange={e=>{}}>Tablet</option>
+        <select className='w-1/2 p-1 m-1 font-mono text-gray-800 rounded-md border-spacing-2 'onChange={e=>{}}>
+          <option value="Smart Phone">Smart Phone</option>
+          <option value="Tablet">Tablet</option>
       </select>
       </div>
 
